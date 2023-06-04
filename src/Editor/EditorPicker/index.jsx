@@ -1,5 +1,8 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
+import { useDispatch } from 'react-redux';
+import { setElement } from '../../store/slice/elementSlice';
+import { createNewElement } from '../EditorCanvas';
 
 const elementTypes = [
     {
@@ -21,6 +24,7 @@ const elementTypes = [
 ]
 
 const ElementPickerItem = ({ type, display }) => {
+    const dispatch = useDispatch();
     const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
         type,
         item: { type },
@@ -29,10 +33,15 @@ const ElementPickerItem = ({ type, display }) => {
         })
     }))
 
+    const clickHandler = () => {
+        const newElement = createNewElement(type);
+        dispatch(setElement(newElement));
+    }
+
     return (
         <div ref={dragPreview} style={{ opacity: isDragging ? 0.5 : 1 }}>
             <div role="Handle" ref={drag} >
-                <button> Create a {display}</button>
+                <button onClick={clickHandler}> Create a {display}</button>
             </div>
         </div>)
 }

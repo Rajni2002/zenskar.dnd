@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { loadState } from "../localStorage";
+
 
 const initialState = {
-    elements: {}
+    elements: loadState() ? loadState().elements.elements : {}
 }
 
 // each item in elements -> { type, stateData, position }
