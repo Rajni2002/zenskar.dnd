@@ -55,6 +55,7 @@ const ElementPickerItem = ({ type, display, secondary, src }) => {
         <>
             <ListItem
                 ref={drag}
+                className='draggable'
                 sx={{
                     opacity: isDragging ? 0.5 : 1,
                     background: "#F9FBFC 0% 0% no-repeat padding-box",

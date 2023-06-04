@@ -33,6 +33,7 @@ const DraggableWrapper = ({ id, type, left, top, children }) => {
         <div
             ref={drag}
             style={getStyles(left, top, isDragging)}
+            className='draggable'
         >
             {children}
         </div>

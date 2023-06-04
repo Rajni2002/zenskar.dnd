@@ -1,8 +1,11 @@
+import { OutlinedInput } from '@mui/material';
 import React from 'react';
 
-const TextInput = ({ val = "Type your email" }) => {
+const TextInput = ({ val, id }) => {
     return (
-        <div>{val} Text input</div>
+        <OutlinedInput sx={{
+            fontFamily: "inherit"
+        }} placeholder={val} />
     );
 };
 

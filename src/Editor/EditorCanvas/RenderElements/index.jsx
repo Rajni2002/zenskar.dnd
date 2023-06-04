@@ -10,19 +10,19 @@ const SwitchElement = ({ element }) => {
     let component;
     switch (element.type) {
         case "button":
-            component = <Button val={element.val} />
+            component = <Button {...element} />
             break;
 
         case "textInput":
-            component = <TextInput val={element.val} />
+            component = <TextInput {...element} />
             break;
 
         case "dropdown":
-            component = <Dropdown listValues={element.listValues} />
+            component = <Dropdown {...element} />
             break;
 
         case "table":
-            component = <Table val={element}/>
+            component = <Table {...element} />
             break;
         default:
             component = <div></div>

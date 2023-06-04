@@ -1,8 +1,15 @@
 import React from 'react';
+import { Button as MUIButton } from '@mui/material';
 
-const Button = ({ val = "Submit" }) => {
+const Button = ({ val, id }) => {
     return (
-        <div>{val} Button</div>
+        <MUIButton
+            className='draggable'
+            sx={{
+                backgroundColor: "#6a2fed",
+                textTransform: "capitalize",
+                fontFamily: 'inherit'
+            }} variant="contained" >{val}</MUIButton>
     );
 };
 
