@@ -4,6 +4,7 @@ import Button from "../DraggableElements/Button"
 import Dropdown from "../DraggableElements/Dropdown"
 import Table from "../DraggableElements/Table"
 import TextInput from "../DraggableElements/TextInput"
+import DraggableWrapper from '../DraggableElements/DraggableWrapper';
 
 const SwitchElement = ({ element }) => {
     let component;
@@ -27,7 +28,11 @@ const SwitchElement = ({ element }) => {
             component = <div></div>
             break;
     }
-    return component;
+    return (
+        <DraggableWrapper {...element}>
+            {component}
+        </DraggableWrapper>
+    )
 }
 
 const RenderElements = ({ canDrop }) => {

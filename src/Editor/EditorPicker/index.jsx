@@ -23,6 +23,7 @@ const elementTypes = [
 const ElementPickerItem = ({ type, display }) => {
     const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
         type,
+        item: { type },
         collect: (monitor) => ({
             isDragging: monitor.isDragging()
         })

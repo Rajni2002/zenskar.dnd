@@ -16,11 +16,23 @@ const elementSlice = createSlice({
                 [action.payload.key]: action.payload.metaData
             }
         }),
+        setElementPosition: (state, action) => ({
+            ...state,
+            elements: {
+                ...state.elements,
+                [action.payload.id]: {
+                    ...state.elements[action.payload.id],
+                    top: action.payload.top,
+                    left: action.payload.left
+                }
+            }
+        })
     },
 });
 
 export const {
-    setElement
+    setElement,
+    setElementPosition
 } = elementSlice.actions;
 
 export default elementSlice.reducer;
