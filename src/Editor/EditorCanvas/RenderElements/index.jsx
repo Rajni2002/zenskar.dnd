@@ -41,9 +41,12 @@ const RenderElements = ({ canDrop }) => {
         Object.keys(elements).length ? Object.keys(elements).map((key, index) => (
             <SwitchElement key={index} element={elements[key]} />
         )) :
-            <h4>
+            <h1 style={{
+                marginTop: "22rem",
+                opacity: '0.1'
+            }}>
                 {canDrop ? 'Release to drop' : 'Drag & drop components here.'}
-            </h4>
+            </h1>
 
     );
 };

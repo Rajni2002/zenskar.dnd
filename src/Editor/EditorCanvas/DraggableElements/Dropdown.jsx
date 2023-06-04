@@ -23,11 +23,12 @@ const Dropdown = ({ listValues }) => {
                     }}
                     sx={{
                         fontFamily: "inherit",
-                        width: "10rem"
+                        width: "10rem",
+                        background: "white",
                     }}
                     autoWidth
                     onDoubleClick={() => {
-                        setIsDisabled(prev => !prev)
+                        setIsDisabled(false)
                     }}
                     open={isOpen}
                     onClick={() => {

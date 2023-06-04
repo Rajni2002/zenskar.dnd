@@ -5,6 +5,7 @@ import { setElement, setElementPosition } from '../../store/slice/elementSlice';
 import { v4 as uuidv4 } from 'uuid';
 import RenderElements from './RenderElements';
 import componentTypes from '../../data/componentTypes';
+import Header from "../../Header"
 
 export const snapToGrid = (x, y) => {
     const snappedX = Math.round(x / 32) * 32;
@@ -114,8 +115,8 @@ const EditorCanvas = () => {
         <div
             className="editor-canvas"
             ref={drop}
-            style={{ backgroundColor: isOver ? 'red' : 'white' }}
         >
+            <Header />
             <RenderElements canDrop={canDrop} />
         </div>
     );

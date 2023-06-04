@@ -4,7 +4,8 @@ import React from 'react';
 const TextInput = ({ val, id }) => {
     return (
         <OutlinedInput sx={{
-            fontFamily: "inherit"
+            fontFamily: "inherit",
+            background: "white"
         }} placeholder={val} />
     );
 };
