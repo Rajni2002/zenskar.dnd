@@ -10,6 +10,8 @@
 
 .editor-picker {
   padding: 25px;
-  width: 250px;
+  width: 400px;
   border-left: 1px solid black;
+  background: #f9fbfc 0% 0% no-repeat padding-box;
+  box-shadow: 1px 1px 1px #00000029;
 }
