@@ -7,12 +7,15 @@ const Dropdown = ({ listValues }) => {
     const [isDisabled, setIsDisabled] = useState(true);
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <ClickAwayListener onClickAway={() => {
+        <ClickAwayListener onClickAway={(e) => {
+            e.stopPropagation();
             setIsOpen(false)
             setIsDisabled(true)
         }}>
             <FormControl fullWidth>
-                <InputLabel id="demo-controlled-open-select-label">Select Options</InputLabel>
+                <InputLabel id="demo-controlled-open-select-label" sx={{
+                    fontFamily: "inherit"
+                }}>Select Options</InputLabel>
                 <Select
                     disabled={isDisabled}
                     value={option}
@@ -27,11 +30,13 @@ const Dropdown = ({ listValues }) => {
                         background: "white",
                     }}
                     autoWidth
-                    onDoubleClick={() => {
+                    onDoubleClick={(e) => {
+                        e.stopPropagation();
                         setIsDisabled(false)
                     }}
                     open={isOpen}
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.stopPropagation();
                         setIsOpen(prev => !prev)
                     }}
                 >

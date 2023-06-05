@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button as MUIButton } from '@mui/material';
 
-const Button = ({ val, id }) => {
+const Button = ({ val, id = null }) => {
     return (
         <MUIButton
             className='draggable'

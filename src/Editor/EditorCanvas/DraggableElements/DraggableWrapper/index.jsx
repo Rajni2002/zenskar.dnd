@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDrag } from 'react-dnd';
 
 const getStyles = (left, top, isDragging) => {
@@ -7,8 +7,6 @@ const getStyles = (left, top, isDragging) => {
         position: 'absolute',
         transform,
         WebkitTransform: transform,
-        // IE fallback: hide the real node using CSS when dragging
-        // because IE will ignore our custom "empty image" drag preview.
         opacity: isDragging ? 0 : 1,
         height: isDragging ? 0 : '',
     }
@@ -31,6 +29,7 @@ const DraggableWrapper = ({ id, type, left, top, children }) => {
     }, [preview])
     return (
         <div
+            id={id}
             ref={drag}
             style={getStyles(left, top, isDragging)}
             className='draggable'

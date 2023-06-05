@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setElement, setElementPosition } from '../../store/slice/elementSlice';
 import { v4 as uuidv4 } from 'uuid';
 import RenderElements from './RenderElements';
-import componentTypes from '../../data/componentTypes';
-import Header from "../../Header"
+import componentTypes, { defaultData } from '../../data/componentTypes';
 
 export const snapToGrid = (x, y) => {
     const snappedX = Math.round(x / 32) * 32;
@@ -14,56 +13,16 @@ export const snapToGrid = (x, y) => {
 }
 
 export const createNewElement = (elementType) => {
-    const newElement = {
-        key: uuidv4(),
-    }
-    let metaData = {};
-    switch (elementType) {
-        case "button":
-            metaData = {
-                val: "Submit"
-            }
-            break;
-
-        case "textInput":
-            metaData = {
-                val: "Type the email"
-            }
-            break;
-
-        case "dropdown":
-            metaData = {
-                listValues: [
-                    "Macbook",
-                    "Ipad",
-                    "Table"
-                ]
-            }
-            break;
-
-        case "table":
-            metaData = {
-                row: 2,
-                col: 2,
-                tableHead: ["S.No", "Name"],
-                entries: [
-                    [1, "Zenskar"],
-                    [2, "Notion"]
-                ]
-            }
-            break;
-        default:
-            break;
-    }
+    const id = uuidv4();
 
     return {
-        ...newElement,
+        key: id,
         metaData: {
-            ...metaData,
+            ...defaultData[elementType],
             type: elementType,
             top: 20,
             left: 80,
-            id: newElement.key
+            id
         }
     }
 }
@@ -96,7 +55,7 @@ const EditorCanvas = () => {
             }
             return {
                 isOver: monitor.isOver(),
-                canDrop: monitor.canDrop()
+                // canDrop: monitor.canDrop()
             }
         },
         // Catch drags within the canvas
@@ -112,13 +71,15 @@ const EditorCanvas = () => {
         }
     }))
     return (
-        <div
-            className="editor-canvas"
-            ref={drop}
-        >
-            <Header />
-            <RenderElements canDrop={canDrop} />
-        </div>
+        <>
+            <div
+                className="editor-canvas"
+                ref={drop}
+            >
+                <RenderElements canDrop={canDrop} />
+            </div>
+        </>
+
     );
 };
 
