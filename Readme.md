@@ -3,7 +3,7 @@
 
 [![npm version](https://badge.fury.io/js/redux.svg)](https://badge.fury.io/js/redux)
 
-![App Screenshot](https://raw.githubusercontent.com/Rajni2002/zenskar.dnd/master/src/assets/ZenskarG_AdobeExpress.gif?token=GHSAT0AAAAAAB7PBLQI3LH22RGZZBH4IGA2ZD5V24A)
+![App Screenshot](https://github.com/Rajni2002/zenskar.dnd/blob/master/src/assets/ZenskarG_AdobeExpress.gif)
 
 ## Frameworks & Libraries
 
