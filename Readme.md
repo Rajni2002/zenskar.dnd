@@ -17,6 +17,7 @@
 - Drag and drop elements
   - From **Editor Picker** to the Canvas Area
   - Drag components around the canvas
+  - To remove the element drag the element to the trash icon
 - Search elements in the **Editor Picker**
 - On refresh persisted state of the elements position
 - User interface as mentioned in the Adobe snapshot

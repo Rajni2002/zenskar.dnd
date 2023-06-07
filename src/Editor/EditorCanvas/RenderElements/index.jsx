@@ -38,7 +38,7 @@ const SwitchElement = ({ element }) => {
 const RenderElements = ({ canDrop }) => {
     const { elements } = useSelector((state) => state.elements);
     return (
-        Object.keys(elements).length ? Object.keys(elements).map((key, index) => (
+        Object.keys(elements ? elements : {}).length ? Object.keys(elements).map((key, index) => (
             <SwitchElement key={index} element={elements[key]} />
         )) :
             <h1 style={{

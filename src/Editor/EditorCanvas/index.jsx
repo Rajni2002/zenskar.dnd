@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import { setElement, setElementPosition } from '../../store/slice/elementSlice';
 import { v4 as uuidv4 } from 'uuid';
 import RenderElements from './RenderElements';
 import componentTypes, { defaultData } from '../../data/componentTypes';
+import DeleteElements from "./DeleteElements"
 
 export const snapToGrid = (x, y) => {
     const snappedX = Math.round(x / 32) * 32;
@@ -28,7 +29,8 @@ export const createNewElement = (elementType) => {
 }
 
 const EditorCanvas = () => {
-    const { elements } = useSelector((state) => state.elements)
+    const { elements } = useSelector((state) => state.elements);
+    const [isHovering, setIsHovering] = useState(false);
 
     const dispatch = useDispatch();
     const moveBox = useCallback(
@@ -50,18 +52,19 @@ const EditorCanvas = () => {
         collect: (monitor) => {
             const elementType = monitor.getItemType();
             // This will skip from creating of the same element in the canvas
+            setIsHovering(monitor.canDrop());
             if (monitor.getDropResult() && elementType && !(monitor.getItem() && monitor.getItem().id)) {
                 dispatch(setElement(createNewElement(elementType)));
             }
             return {
                 isOver: monitor.isOver(),
-                // canDrop: monitor.canDrop()
+                canDrop: monitor.canDrop()
             }
         },
         // Catch drags within the canvas
         drop: (item, monitor) => {
-            if (item.id) {
-                const delta = monitor.getDifferenceFromInitialOffset();
+            const delta = monitor.getDifferenceFromInitialOffset();
+            if (item.id && delta) {
                 let left = Math.round(item.left + delta.x)
                 let top = Math.round(item.top + delta.y)
                     ;[left, top] = snapToGrid(left, top)
@@ -76,6 +79,7 @@ const EditorCanvas = () => {
                 className="editor-canvas"
                 ref={drop}
             >
+                {isHovering && <DeleteElements />}
                 <RenderElements canDrop={canDrop} />
             </div>
         </>

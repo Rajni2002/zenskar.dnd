@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loadState } from "../localStorage";
 
-
 const initialState = {
     elements: loadState() ? loadState().elements.elements : {}
 }
@@ -28,13 +27,19 @@ const elementSlice = createSlice({
                     left: action.payload.left
                 }
             }
-        })
+        }),
+        removeElement: (state, action) => {
+            const preState = { ...state.elements };
+            delete preState[action.payload];
+            state.elements = { ...preState }
+        }
     },
 });
 
 export const {
     setElement,
-    setElementPosition
+    setElementPosition,
+    removeElement
 } = elementSlice.actions;
 
 export default elementSlice.reducer;
